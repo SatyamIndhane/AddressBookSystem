@@ -14,11 +14,10 @@ public class AddressBookSystem
 		while( quit != false )
 		{
 			System.out.println("Choose option");
-			System.out.println("1. Create a Contact");
+			System.out.println("1. Create a New Contact");
 			System.out.println("2. Exit");
 			
 			choice = sc.nextInt();
-			sc.nextLine();
 			
 			switch(choice)
 			{
