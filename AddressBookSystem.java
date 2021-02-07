@@ -128,7 +128,6 @@ public class AddressBookSystem
 		}
 		
 		System.out.println(addbook1);
-		System.out.println(Create.fname);
 	}
 
 }
