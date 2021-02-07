@@ -14,17 +14,25 @@ public class AddressBookSystem
 		while( quit != false )
 		{
 			System.out.println("Choose option");
+			System.out.println("0. Print the address book");
 			System.out.println("1. Create a New Contact");
-			System.out.println("2. Exit");
+			System.out.println("2. Edit a Contact");
+			System.out.println("3. Exit");
 			
 			choice = sc.nextInt();
 			
 			switch(choice)
 			{
+				case 0 :
+					System.out.println(addbook1);
+					break;
 				case 1 :
 					contactCreation();
 					break;
 				case 2 :
+					editContact();
+					break;
+				case 3 :
 					quit = false;
 					break;
 				
@@ -32,7 +40,8 @@ public class AddressBookSystem
 		}
 		
 	}
-	 public static void contactCreation()
+	
+	public static void contactCreation()
 	 {
 		 System.out.println("Enter first name\r"); 
 		 Create.fname=sc.next();
@@ -64,6 +73,63 @@ public class AddressBookSystem
 		 
 		 System.out.println(addbook1);
 	 }
+	
+	public static void editContact()
+	{
+		System.out.println("Please input the first name");
+		String input = sc.next();
+		
+		boolean exists = addbook1.contains(input);
+		
+		if ( exists == true && input.equals(Create.fname))
+		{
+			System.out.println("Which detail to edit Please enter option\r");
+			System.out.println("1. Editing first name\r");
+			System.out.println("2. Editing last name\r");
+			System.out.println("3. Editing address\r");
+			System.out.println("4. Editing city\r");
+			System.out.println("5. Editing state\r");
+			System.out.println("6. Editing zip\r");
+			System.out.println("7. Editing phone number\r");
+			System.out.println("8. Editing email\r");
+			int option = sc.nextInt();
+			switch(option)
+				{
+					case 1:
+						addbook1.set(addbook1.indexOf(Create.fname), sc.next());
+						break;
+					case 2:
+						addbook1.set(addbook1.indexOf(Create.lname), sc.next());
+						break;
+					case 3:
+						addbook1.set(addbook1.indexOf(Create.address), sc.next());
+						break;
+					case 4:
+						addbook1.set(addbook1.indexOf(Create.city), sc.next());
+						break;
+					case 5:
+						addbook1.set(addbook1.indexOf(Create.state), sc.next());
+						break;
+					case 6:
+						addbook1.set(addbook1.indexOf(Create.zip), sc.next());
+						break;
+					case 7:
+						addbook1.set(addbook1.indexOf(Create.ph), sc.next());
+						break;
+					case 8:
+						addbook1.set(addbook1.indexOf(Create.email), sc.next());
+						break;
+				}
+		}
+		
+		else
+		{
+			System.out.println("This name doesn't exist");
+		}
+		
+		System.out.println(addbook1);
+		System.out.println(Create.fname);
+	}
 
 }
 
