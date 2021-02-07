@@ -17,7 +17,8 @@ public class AddressBookSystem
 			System.out.println("0. Print the address book");
 			System.out.println("1. Create a New Contact");
 			System.out.println("2. Edit a Contact");
-			System.out.println("3. Exit");
+			System.out.println("3. Remove a Contact");
+			System.out.println("4. Exit");
 			
 			choice = sc.nextInt();
 			
@@ -32,10 +33,12 @@ public class AddressBookSystem
 				case 2 :
 					editContact();
 					break;
-				case 3 :
+				case 3:
+					deleteContact();
+					break;
+				case 4 :
 					quit = false;
 					break;
-				
 			}
 		}
 		
@@ -81,7 +84,7 @@ public class AddressBookSystem
 		
 		boolean exists = addbook1.contains(input);
 		
-		if ( exists == true && input.equals(Create.fname))
+		if ( exists == true && input.equals(addbook1.get(0)))
 		{
 			System.out.println("Which detail to edit Please enter option\r");
 			System.out.println("1. Editing first name\r");
@@ -120,6 +123,27 @@ public class AddressBookSystem
 						addbook1.set(addbook1.indexOf(Create.email), sc.next());
 						break;
 				}
+		}
+		
+		else
+		{
+			System.out.println("This name doesn't exist");
+		}
+		
+		System.out.println(addbook1);
+	}
+	
+	public static void deleteContact()
+	{
+		System.out.println("Please input Contact first name to delete him");
+		String input = sc.next();
+		
+		boolean exists = addbook1.contains(input);
+		
+		if( exists == true && input.equals(addbook1.get(0)))
+		{
+			System.out.println("Confirm delete ");
+			addbook1.clear();
 		}
 		
 		else
