@@ -4,13 +4,14 @@ import java.util.*;
 public class AddressBookSystem 
 {	
 	static Scanner sc = new Scanner(System.in);
-	static ArrayList addbook1 = new ArrayList();
+	static ArrayList<Create> addbook1 = new ArrayList<Create>();
 	
 	public static void main(String[] args)
 	{
 		boolean quit = true;
 		int choice = 0;
 		System.out.println("Welcome to AddressbOOkSystem");
+		
 		while( quit != false )
 		{
 			System.out.println("Choose option");
@@ -27,15 +28,21 @@ public class AddressBookSystem
 				case 0 :
 					System.out.println(addbook1);
 					break;
+					
 				case 1 :
-					contactCreation();
+					System.out.println("Enter number of contacts to Create\r");
+					int numberOfContacts = sc.nextInt();
+					contactCreation(numberOfContacts);
 					break;
+					
 				case 2 :
 					editContact();
 					break;
+					
 				case 3:
 					deleteContact();
 					break;
+					
 				case 4 :
 					quit = false;
 					break;
@@ -44,145 +51,157 @@ public class AddressBookSystem
 		
 	}
 	
-	public static void contactCreation()
+	public static void contactCreation(int numberOfContacts)
 	 {
-		 System.out.println("Enter first name\r"); 
-		 Create.fname=sc.next();
-		 addbook1.add(Create.fname);
-		 
-		 System.out.println("Enter last name\r"); 
-		 Create.lname=sc.next();
-		 addbook1.add(Create.lname);
-		 
-		 System.out.println("Enter address\r"); 
-		 Create.address=sc.next();
-		 addbook1.add(Create.address);
-		 
-		 System.out.println("Enter state\r"); 
-		 Create.state=sc.next();
-		 addbook1.add(Create.state);
-		 
-		 System.out.println("Enter zip\r"); 
-		 Create.zip=sc.nextInt();
-		 addbook1.add(Create.zip);
-		 
-		 System.out.println("Enter phone number\r"); 
-		 Create.ph=sc.nextInt();
-		 addbook1.add(Create.ph);
-		 
-		 System.out.println("Enter email\r"); 
-		 Create.email=sc.next();
-		 addbook1.add(Create.email);
-		 
-		 System.out.println(addbook1);
+		 for( int i=0; i<numberOfContacts; i++)
+		 	{
+				 Create person = new Create(null, null, null, null, null, 0, 0, null);
+				 System.out.println("Enter first name\r"); 
+				 person.fname=sc.next();
+				 
+				 System.out.println("Enter last name\r"); 
+				 person.lname=sc.next();
+				 
+				 System.out.println("Enter address\r"); 
+				 person.address=sc.next();
+				 
+				 System.out.println("Enter city\r"); 
+				 person.city=sc.next();
+				 
+				 System.out.println("Enter state\r"); 
+				 person.state=sc.next();
+				 
+				 System.out.println("Enter zip\r"); 
+				 person.zip=sc.nextInt();
+				 
+				 System.out.println("Enter phone number\r"); 
+				 person.ph=sc.nextInt();
+				 
+				 System.out.println("Enter email\r"); 
+				 person.email=sc.next();
+				 
+				 addbook1.add(person);
+				 System.out.println(person.toString());
+		 	}
 	 }
 	
 	public static void editContact()
 	{
 		System.out.println("Please input the first name");
 		String input = sc.next();
+		int flag = 0;
 		
-		boolean exists = addbook1.contains(input);
-		
-		if ( exists == true && input.equals(addbook1.get(0)))
+		for (int i=0; i<addbook1.size(); i++)
 		{
-			System.out.println("Which detail to edit Please enter option\r");
-			System.out.println("1. Editing first name\r");
-			System.out.println("2. Editing last name\r");
-			System.out.println("3. Editing address\r");
-			System.out.println("4. Editing city\r");
-			System.out.println("5. Editing state\r");
-			System.out.println("6. Editing zip\r");
-			System.out.println("7. Editing phone number\r");
-			System.out.println("8. Editing email\r");
-			int option = sc.nextInt();
-			switch(option)
-				{
-					case 1:
-						addbook1.set(addbook1.indexOf(Create.fname), sc.next());
-						break;
-					case 2:
-						addbook1.set(addbook1.indexOf(Create.lname), sc.next());
-						break;
-					case 3:
-						addbook1.set(addbook1.indexOf(Create.address), sc.next());
-						break;
-					case 4:
-						addbook1.set(addbook1.indexOf(Create.city), sc.next());
-						break;
-					case 5:
-						addbook1.set(addbook1.indexOf(Create.state), sc.next());
-						break;
-					case 6:
-						addbook1.set(addbook1.indexOf(Create.zip), sc.next());
-						break;
-					case 7:
-						addbook1.set(addbook1.indexOf(Create.ph), sc.next());
-						break;
-					case 8:
-						addbook1.set(addbook1.indexOf(Create.email), sc.next());
-						break;
-				}
+			if ( addbook1.get(i).fname.equals(input) )
+			{
+				flag = 1;
+				System.out.println("Which detail to edit Please enter option\r");
+				System.out.println("1. Editing first name\r");
+				System.out.println("2. Editing last name\r");
+				System.out.println("3. Editing address\r");
+				System.out.println("4. Editing city\r");
+				System.out.println("5. Editing state\r");
+				System.out.println("6. Editing zip\r");
+				System.out.println("7. Editing phone number\r");
+				System.out.println("8. Editing email\r");
+				
+				int option = sc.nextInt();
+				switch(option)
+					{
+						case 1:
+							System.out.println("Insert first name\r");
+							addbook1.get(i).fname = sc.next();
+							break;
+						case 2:
+							System.out.println("Insert last name\r");
+							addbook1.get(i).lname = sc.next();
+							break;
+						case 3:
+							System.out.println("Insert address\r");
+							addbook1.get(i).address = sc.next();
+							break;
+						case 4:
+							System.out.println("Insert city\r");
+							addbook1.get(i).city = sc.next();
+							break;
+						case 5:
+							System.out.println("Insert state\r");
+							addbook1.get(i).state = sc.next();
+							break;
+						case 6:
+							System.out.println("Insert zip\r");
+							addbook1.get(i).zip = sc.nextInt();
+							break;
+						case 7:
+							System.out.println("Insert phone number\r");
+							addbook1.get(i).ph = sc.nextInt();
+							break;
+						case 8:
+							System.out.println("Insert email\r");
+							addbook1.get(i).email = sc.next();
+							break;
+					}
+			}
 		}
-		
-		else
+		if ( flag != 1 )
 		{
-			System.out.println("This name doesn't exist");
+			System.out.println("Please enter valid first name");
 		}
-		
-		System.out.println(addbook1);
 	}
-	
 	public static void deleteContact()
 	{
 		System.out.println("Please input Contact first name to delete him");
 		String input = sc.next();
-		
-		boolean exists = addbook1.contains(input);
-		
-		if( exists == true && input.equals(addbook1.get(0)))
+		int flag = 0;
+				
+		for (int i=0; i<addbook1.size(); i++)
 		{
-			System.out.println("Confirm delete ");
-			addbook1.clear();
+			flag = 1;
+			if( input.equals(addbook1.get(i).fname))
+			{
+				System.out.println("Confirm delete ");
+				addbook1.remove(i);
+			}
+			
 		}
+		if ( flag !=1 )
+		System.out.println("This name doesn't exist");
 		
-		else
-		{
-			System.out.println("This name doesn't exist");
-		}
-		
-		System.out.println(addbook1);
 	}
 
 }
 
 class Create
 {
-	static String fname;
-	static String lname;
-	static String address;
-	static String city;
-	static String state;
-	static int zip;
-	static int ph;
-	static String email;
+	 String fname;
+	 String lname;
+	 String address;
+	 String city;
+	 String state;
+	 int zip;
+	 int ph;
+	 String email;
 	
 	Create(String fname, String lname, String address, String city, String state, int zip, int ph,
 			String email)
 	{
-		Create.fname = fname;
-		Create.lname = lname;
-		Create.address = address;
-		Create.city = city;
-		Create.state = state;
-		Create.zip = zip;
-		Create.ph = ph;
-		Create.email = email;
+		this.fname = fname;
+		this.lname = lname;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.ph = ph;
+		this.email = email;
 	}
 	
-	public void display()
+	
+	public String toString()
 	{
-		System.out.println("First name : "+fname+"\rLast name : "+lname+"\rAddress :" +address+"\rcity : "
-				+city+"\rstate : "+state+"\rzip : "+zip+"\rph : "+ph+"\remail : "+email);
+		return "\rFirst name : "+this.fname+"\rLast name : "+this.lname+"\rAddress :" +this.address+"\rcity : "
+				+this.city+"\rstate : "+this.state+"\rzip : "+this.zip+"\rph : "+this.ph+"\remail : "
+				+this.email+"\r";
 	}
+	
 }
